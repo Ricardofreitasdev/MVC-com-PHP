@@ -1,3 +1,3 @@
 db.sqlite
 composer.lock
-vendor
+/vendor
