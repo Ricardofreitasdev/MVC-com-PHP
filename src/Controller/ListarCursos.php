@@ -6,7 +6,7 @@ use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
 
-class ListarCursos implements InterfaceControladorReq
+class ListarCursos extends ControllerHtml implements InterfaceControladorReq
 {
 
     private $repositorioDeCursos;
@@ -20,8 +20,12 @@ class ListarCursos implements InterfaceControladorReq
     public function processaRequisicao(): void
     {
         $cursos = $this->repositorioDeCursos->findAll();
-        $titulo = "Listar Cursos";
 
-        require __DIR__ . '/../../view/cursos/Listar.php';
+        echo $this->render('cursos/Listar', [
+            'cursos' => $cursos,
+            'titulo' => "Listar Cursos",
+        ]);
+
+        
     }
 }
