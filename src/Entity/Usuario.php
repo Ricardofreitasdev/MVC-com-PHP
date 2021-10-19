@@ -1,24 +1,10 @@
 <?php
-namespace Alura\Armazenamento\Entity;
-/**
- * @Entity
- * @Table(name="usuarios")
- */
+namespace Alura\Cursos\Entity;
 class Usuario
 {
-    /**
-     * @Id
-     * @GeneratedValue
-     * @Column(type="integer")
-     */
-    private $id;
-    /**
-     * @Column(type="string")
-     */
-    private $email;
-    /**
-     * @Column(type="string")
-     */
+ 
+    private $id;  
+    private $email;  
     private $senha;
 
     public function senhaEstaCorreta(string $senhaPura): bool

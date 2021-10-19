@@ -3,6 +3,7 @@ namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Controller\InterfaceControladorReq;
 use Alura\Cursos\Entity\Curso;
+
 use Alura\Cursos\Infra\EntityManagerCreator;
 
 class Persistencia implements InterfaceControladorReq
