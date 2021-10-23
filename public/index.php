@@ -11,6 +11,15 @@ if(!array_key_exists($path, $rotas)){
     exit();
 }
 
+session_start();
+
+$isLoginRoute = stripos($path, 'login');
+
+if(!isset($_SESSION['logado']) && $isLoginRoute === false){
+    header('Location: /login');
+    exit();
+}
+
 $classeControladora = $rotas[$path];
 $controlador = new $classeControladora();
 $controlador->processaRequisicao();

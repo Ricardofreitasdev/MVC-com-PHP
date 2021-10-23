@@ -3,11 +3,14 @@
 namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Entity\Usuario;
+use Alura\Cursos\Helper\MessageTrait;
 use Alura\Cursos\Infra\EntityManagerCreator;
 use Alura\Cursos\Controller\InterfaceControladorReq;
 
 class RealizarLogin implements InterfaceControladorReq
 {
+
+    use MessageTrait;
 
     private $repositorioDeUsuarios;
 
@@ -20,31 +23,20 @@ class RealizarLogin implements InterfaceControladorReq
     public function processaRequisicao(): void
     {
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $usuario = $this->repositorioDeUsuarios->findOneBy(['email' => $email]);    
 
-        if(is_null($email) || $email === false){
-            echo "email invalido";
+        $senha = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);     
+
+
+        if(is_null($usuario) || !$usuario->senhaEstaCorreta($senha)){
+        $this->defineMensagem('danger', 'Email ou senha invalida');
+            
+            header("Location: /login");
             return;
         }
 
-        $senha = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $_SESSION['logado'] = true; 
 
-        if(is_null($email) || $email === false){
-            echo "email invalido";
-            return;
-        }
-
-
-        var_dump($email);
-        exit();
-
-        // $usuario = $this->repositorioDeUsuarios->findOneBy($email);
-        // $usuario->senhaEstaCorreta($senha);
-
-        // if(is_null($usuario) || !$usuario->senhaEstaCorreta($senha)){
-        //     echo "Senha invalidos";
-        //     return;
-        // }
-
-        // header("Location: /listar-cursos");
+        header("Location: /listar-cursos");
     }
 }

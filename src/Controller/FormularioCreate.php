@@ -1,11 +1,13 @@
 <?php
 
 namespace Alura\Cursos\Controller;
+use Alura\Cursos\Helper\HtmlRender;
 
 
-class FormularioCreate extends ControllerHtml implements InterfaceControladorReq
+class FormularioCreate implements InterfaceControladorReq
 {
 
+    use HtmlRender;
 
     public function processaRequisicao(): void
     {

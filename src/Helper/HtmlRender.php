@@ -1,8 +1,10 @@
 <?php
-namespace Alura\Cursos\Controller;
 
-abstract class ControllerHtml 
+namespace Alura\Cursos\Helper;
+
+trait HtmlRender
 {
+
     public function render(string $path, array $data): string
     {
         extract($data);
@@ -14,4 +16,5 @@ abstract class ControllerHtml
         return $html;   
         
     }
+    
 }

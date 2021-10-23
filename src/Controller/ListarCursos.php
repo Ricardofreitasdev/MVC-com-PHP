@@ -3,12 +3,13 @@
 namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Entity\Curso;
+use Alura\Cursos\Helper\HtmlRender;
 use Alura\Cursos\Infra\EntityManagerCreator;
 
 
-class ListarCursos extends ControllerHtml implements InterfaceControladorReq
+class ListarCursos implements InterfaceControladorReq
 {
-
+    use HtmlRender;
     private $repositorioDeCursos;
 
     public function __construct()

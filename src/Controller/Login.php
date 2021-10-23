@@ -1,11 +1,12 @@
 <?php
 
 namespace Alura\Cursos\Controller;
-use Alura\Cursos\Controller\ControllerHtml;
 use Alura\Cursos\Controller\InterfaceControladorReq;
+use Alura\Cursos\Helper\HtmlRender;
 
-class Login extends ControllerHtml implements InterfaceControladorReq
+class Login  implements InterfaceControladorReq
 {
+    use HtmlRender;
 
     public function processaRequisicao(): void
     {

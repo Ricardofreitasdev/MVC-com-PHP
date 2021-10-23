@@ -5,8 +5,8 @@
             <input type="email" name="email" id="email" class="form-control">
         </div>
         <div class="form-group">
-            <label for="senha">E-mail</label>
-            <input type="password" name="senha" id="senha" class="form-control">
+            <label for="password">password</label>
+            <input type="password" name="password" id="password" class="form-control">
         </div>
 
         <button class="btn btn-primary">enviar</button>
