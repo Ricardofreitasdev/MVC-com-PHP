@@ -4,33 +4,45 @@ namespace Alura\Cursos\Controller;
 
 use Alura\Cursos\Entity\Curso;
 use Alura\Cursos\Helper\HtmlRender;
-use Alura\Cursos\Infra\EntityManagerCreator;
+use Doctrine\ORM\EntityManagerInterface;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class FormularioEditar implements InterfaceControladorReq
+class FormularioEditar implements RequestHandlerInterface
 {
     use HtmlRender;
+
+    /**
+     * @var \Doctrine\Common\Persistence\ObjectRepository
+     */
     private $repositorioDeCursos;
 
-    public function __construct()
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $entityManager = (new EntityManagerCreator())->getEntityManager();
         $this->repositorioDeCursos = $entityManager->getRepository(Curso::class);
     }
 
-    public function processaRequisicao(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $id = $request->getQueryParams()['id'];
 
         if (is_null($id) || $id === false) {
             header("Location: /listar-cursos");
-            return;
+            $resposta = new Response(302, ['Location' => '/listar-cursos']);
+            return $resposta;
         }
 
         $curso = $this->repositorioDeCursos->find($id);
 
-        echo $this->render('cursos/Formulario', [
-            'curso' => $curso,
-            'titulo' => 'Alterar Curso ' . $curso->getDescricao()
+        $html = $this->render('cursos/Formulario', [
+            'curso'  => $curso,
+            'titulo' => 'Alterar Curso ' . $curso->getDescricao(),
         ]);
+
+        $resposta = new Response(302, [], $html);
+        return $resposta;
+
     }
 }

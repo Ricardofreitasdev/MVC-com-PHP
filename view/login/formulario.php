@@ -1,4 +1,4 @@
-<?php include __DIR__ . "/../Header.php"; ?>
+<?php include __DIR__ . "/../Header.php";?>
     <form action="/realizar-login" method="post">
         <div class="form-group">
             <label for="email">E-mail</label>
@@ -11,4 +11,4 @@
 
         <button class="btn btn-primary">enviar</button>
     </form>
-<?php include __DIR__ . "/../Footer.php"; ?>
+<?php include __DIR__ . "/../Footer.php";?>

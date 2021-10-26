@@ -12,9 +12,9 @@ trait HtmlRender
         ob_start();
         require __DIR__ . "/../../view/" . $path . ".php";
         $html = ob_get_clean();
-        
-        return $html;   
-        
+
+        return $html;
+
     }
-    
+
 }

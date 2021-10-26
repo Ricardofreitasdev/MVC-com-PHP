@@ -10,12 +10,12 @@ class EntityManagerCreator
 {
     public function getEntityManager(): EntityManagerInterface
     {
-        $paths = [__DIR__ . '/../Entity'];
+        $paths     = [__DIR__ . '/../Entity'];
         $isDevMode = false;
 
         $dbParams = array(
             'driver' => 'pdo_sqlite',
-            'path' => __DIR__ . '/../../db.sqlite'
+            'path'   => __DIR__ . '/../../db.sqlite',
         );
 
         $config = Setup::createAnnotationMetadataConfiguration(

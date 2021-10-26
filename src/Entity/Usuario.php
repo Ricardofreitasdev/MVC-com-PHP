@@ -7,17 +7,17 @@ namespace Alura\Cursos\Entity;
  */
 class Usuario
 {
- 
-      /**
+
+    /**
      * @Id
      * @GeneratedValue
      * @Column(type="integer")
      */
-    private $id;  
+    private $id;
     /**
      * @Column(type="string")
      */
-    private $email;  
+    private $email;
     /**
      * @Column(type="string")
      */
